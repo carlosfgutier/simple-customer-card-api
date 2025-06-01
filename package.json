@@ -1,0 +1,26 @@
+{
+  "name": "customer-card-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlosfgutier/simple-customer-card-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/carlosfgutier/simple-customer-card-api/issues"
+  },
+  "homepage": "https://github.com/carlosfgutier/simple-customer-card-api#readme",
+  "devDependencies": {
+    "@types/node": "^22.15.29",
+    "@vercel/node": "^5.2.1",
+    "typescript": "^5.8.3"
+  }
+}
