@@ -1,30 +1,33 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { getCustomerCards } from '../src/cards';
+import { getCustomerCards, CardContext } from '../src/cards';
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader('Cache-Control', 'no-cache');
 
-  // Test values
-  // const context = {
-  //   eventsCount: 1234,
-  //   eventsBudget: 2000,
-  //   contractValue: 399,
-  //   teamName: 'Sales',
-  //   role: 'User',
-  //   id: 'usr_9a8b7c6x5t',
-  // };
+  const requestedCardKeys = req.body?.cardKeys || [];
 
-  const context = {
+  // Mocked values otherwised parsed from query params
+  // I wanted to try different types of cards but
+  // after looking at the context, I relize it probably,
+  // makes more sense to group cards by type under each api
+  const context: CardContext = {
     eventsCount: 1850,
     eventsBudget: 2000,
-    contractValue: 0,
+    contractValue: 399,
     teamName: 'Engineering',
     role: 'Admin',
     id: 'adm_340y990c',
+    channelName: 'Support (Chat)',
+    channelStatus: 'Online',
+    channelHours: 'Mon–Fri, 9am–6pm',
+    requestTitle: 'Issue with onboarding',
+    requestSummary: 'Customer reported an issue with connecting their Google account during onboarding.',
   };
 
-  
+  const allCards = getCustomerCards(context);
+  const filteredCards = requestedCardKeys.length
+    ? allCards.filter((card) => requestedCardKeys.includes(card.key))
+    : allCards;
 
-  const cards = getCustomerCards(context);
-  res.status(200).json({ cards });
+  res.status(200).json({ cards: filteredCards });
 }

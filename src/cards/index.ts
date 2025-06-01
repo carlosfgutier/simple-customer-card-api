@@ -1,18 +1,26 @@
 import { Card } from '../response';
 import takeHomeCustomerCard from './takeHomeCustomerCard';
+import supportChannelCard from './supportChannelCard';
+import requestSummaryCard from './requestSummaryCard';
 
-// mocked card context
 export type CardContext = {
-    eventsCount: number;
-    eventsBudget: number;
-    contractValue: number;
-    teamName: string,
-    role: string,
-    id: string,
+  eventsCount: number;
+  eventsBudget: number;
+  contractValue: number;
+  teamName: string;
+  role: string;
+  id: string;
+  channelName: string;
+  channelStatus: 'Online' | 'Offline';
+  channelHours: string;
+  requestTitle: string;
+  requestSummary: string;
 };
 
 export function getCustomerCards(ctx: CardContext): Card[] {
   return [
-    takeHomeCustomerCard(ctx.eventsCount, ctx.eventsBudget, ctx.contractValue, ctx.teamName, ctx.role, ctx.id),
+    takeHomeCustomerCard(ctx),
+    supportChannelCard(ctx),
+    requestSummaryCard(ctx),
   ];
 }
