@@ -10,35 +10,102 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
 
   res.setHeader('Cache-Control', 'no-cache');
 
+  const now = new Date();
+
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const seconds = now.getSeconds().toString().padStart(2, '0');
+
+  const formattedTime = `${hours}:${minutes}:${seconds}`;
+
+
   res.status(200).json({
     cards: [
       {
         key: 'carlos-fernando-gutierrez-take-home-customer-card',
-        timeToLiveSeconds: 300,
+        timeToLiveSeconds: 7200,
         components: [
           {
-            componentText: {
-              text: "Plan: Pro ($399/month)"
-            }
+            componentSpacer: {
+              spacerSize: 'S',
+            },
+          },
+          {
+            componentRow: {
+              rowMainContent: [
+                {
+                  componentText: {
+                    text: 'Plan',
+                    textColor: 'MUTED',
+                  },
+                },
+              ],
+              rowAsideContent: [
+                {
+                  componentText: {
+                    text: 'Pro ($399/month)',
+                  },
+                },
+              ],
+            },
+          },
+          {
+            componentSpacer: {
+              spacerSize: 'M',
+            },
+          },
+          {
+            componentRow: {
+              rowMainContent: [
+                {
+                  componentText: {
+                    text: 'Events this month',
+                    textColor: 'MUTED',
+                  },
+                },
+              ],
+              rowAsideContent: [
+                {
+                  componentText: {
+                    text: '1,234',
+                  },
+                },
+              ],
+            },
+          },
+          {
+            componentSpacer: {
+              spacerSize: 'M',
+            },
+          },
+          {
+            componentRow: {
+              rowMainContent: [
+                {
+                  componentText: {
+                    text: 'Total events',
+                    textColor: 'MUTED',
+                  },
+                },
+              ],
+              rowAsideContent: [
+                {
+                  componentText: {
+                    text: '34,834',
+                  },
+                },
+              ],
+            },
           },
           {
             componentText: {
-              text: "Events this month: 1,234"
-            }
+              text: `Last updated: ${formattedTime}`,
+              textColor: 'MUTED',
+              textSize: 'S',
+            },
           },
-          {
-            componentText: {
-              text: "Role: Admin"
-            }
-          },
-          {
-            componentLinkButton: {
-              linkButtonLabel: "Edit in internal tool",
-              linkButtonUrl: "https://internal.trackly.io/customers/trackly_001"
-            }
-          }
-        ]
-      }
-    ]
+        ],
+      },
+    ],
   });
 }
