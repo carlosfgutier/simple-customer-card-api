@@ -17,25 +17,25 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
         timeToLiveSeconds: 300,
         components: [
           {
-            type: "text",
-            key: "plan",
-            text: "Plan: Pro ($399/month)"
+            componentText: {
+              text: "Plan: Pro ($399/month)"
+            }
           },
           {
-            type: "text",
-            key: "events",
-            text: "Events this month: 1,234"
+            componentText: {
+              text: "Events this month: 1,234"
+            }
           },
           {
-            type: "text",
-            key: "role",
-            text: "Role: Admin"
+            componentText: {
+              text: "Role: Admin"
+            }
           },
           {
-            type: "link",
-            key: "edit_link",
-            text: "Edit in internal tool",
-            href: "https://internal.trackly.io/customers/trackly_001"
+            componentLinkButton: {
+              linkButtonLabel: "Edit in internal tool",
+              linkButtonUrl: "https://internal.trackly.io/customers/trackly_001"
+            }
           }
         ]
       }
