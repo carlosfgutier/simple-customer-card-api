@@ -6,10 +6,11 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
 
   const requestedCardKeys = req.body?.cardKeys || [];
 
-  // Mocked values otherwised parsed from query params
-  // I wanted to try different types of cards but
-  // after looking at the context, I relize it probably,
-  // makes more sense to group cards by type under each api
+  // Mocked values otherwised parsed from the request body.
+  // I wanted to try different types of cards, and realized that
+  // in real life it would make more sense to group cards by type 
+  // under endpoints like: /customer-info, /request-info, etc.
+  // to avoid having massive contexts with data from different objects.
   const context: CardContext = {
     eventsCount: 1850,
     eventsBudget: 2000,
